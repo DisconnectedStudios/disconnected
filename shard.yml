@@ -1,0 +1,18 @@
+name: disconnected
+version: 0.1.0
+
+authors:
+  - Bar Hofesh <bar.hofesh@gmail.com>
+
+targets:
+  disconnected:
+    main: src/disconnected.cr
+
+dependencies:
+  crsfml:
+    github: bararchy/crsfml
+    branch: master
+
+crystal: 0.24.2
+
+license: MIT
