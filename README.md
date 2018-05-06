@@ -1,22 +1,31 @@
 # disconnected
 
-TODO: Write a description here
+This is the main repo for the disconnected game, this is an active under development project.
+
+## :exclamation:  Spoiler Alert  :exclamation:
+
+As this is an OpenSource game, the source code and relevant game data is free to browse.  
+Because of this reason you might encounter game shattering revelations, so keep in mind that any part of this repo is 
+spoiler land.  
 
 ## Installation
+### prerequisites  
+1. [install Crystal](https://crystal-lang.org/docs/installation/)  
+2. [install SFML](https://www.sfml-dev.org/download.php) 
 
-TODO: Write installation instructions here
-
-## Usage
-
-TODO: Write usage instructions here
+### installation steps  
+1. clone the repo   
+2. `cd disconnected`
+3. `shards update`  
+4. `./test`    
 
 ## Development
 
-TODO: Write development instructions here
+Development process will be followed using issues.  
 
 ## Contributing
 
-1. Fork it ( https://github.com/[your-github-name]/disconnected/fork )
+1. Fork it ( https://github.com/DisconnectedStudios/disconnected/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -24,4 +33,5 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) Bar Hofesh - creator, maintainer
+- [bararchy](https://github.com/bararchy) Bar Hofesh - creator, maintainer  
+- [ArtLinkov](https://github.com/bararchy) Art Linkov - creator, maintainer
