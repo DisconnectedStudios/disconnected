@@ -7,7 +7,6 @@ module Disconnected
     end
 
     def run
-      spawn draw_loop
       while @window.open?
         while event = @window.poll_event
           case event
