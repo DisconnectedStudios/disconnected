@@ -2,8 +2,9 @@ module Disconnected
   class EventLoop
     @window : SF::RenderWindow
     @player : Player
+    @bg : Background
 
-    def initialize(@window, @player)
+    def initialize(@window, @player, @bg)
     end
 
     def run

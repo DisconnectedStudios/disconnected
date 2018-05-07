@@ -6,6 +6,7 @@ module Disconnected
 
     def initialize(@window, @bg, @player, @chars : Array(BasicChar))
       @main_view = @window.default_view.as(SF::View)
+      @main_view.zoom(0.5)
       @main_view.viewport = SF.float_rect(0, 0, 1, 1)
       @main_view.center = @player.position
     end
