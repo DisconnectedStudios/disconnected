@@ -1,0 +1,21 @@
+{
+  "title": "Chapter 1",
+  "background": "resources/backgrounds/chapter_01/forest_clearing.png",
+  "obstacles": [
+    {
+      "name": "trees",
+      "x": 1,
+      "y": 1,
+      "size_x": 100,
+      "size_y": 100
+    }
+  ],
+  "items": [
+    {
+      "x": 1,
+      "y": 1,
+      "name": "stick",
+      "id": 1
+    }
+  ]
+}

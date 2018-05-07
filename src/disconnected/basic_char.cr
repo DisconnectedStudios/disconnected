@@ -3,7 +3,7 @@ module Disconnected
     getter :name, :sprite
     property :health, :speed
 
-    def initialize(texture_path : Array(String), @name : String = "", @health : Int32 = 10)
+    def initialize(texture_path : Array(String), starting_position_x : Int32, starting_position_y : Int32, @name : String = "", @health : Int32 = 10)
       @speed = 1
       @images = Array(SF::Image).new
       texture_path.each do |p|
@@ -11,6 +11,7 @@ module Disconnected
       end
       @texture = SF::Texture.from_file(texture_path.first)
       @sprite = SF::Sprite.new(@texture)
+      @sprite.position = SF.vector2(starting_position_x, starting_position_y)
 
       reset_sprite_position
       loop_texture
@@ -34,7 +35,6 @@ module Disconnected
     def reset_sprite_position
       @sprite.origin = @texture.size / 2.0
       @sprite.scale = SF.vector2(0.9, 0.9)
-      @sprite.position = SF.vector2(250, 300)
     end
 
     def position
