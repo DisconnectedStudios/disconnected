@@ -6,31 +6,56 @@ module Disconnected
       {
         title:      String,
         background: String,
-        obstacles:  Array(ObstaclesJSON)?,
-        items:      Array(ItemsJSON)?,
+        obstacles:  Array(ObstacleJSON)?,
+        items:      Array(ItemJSON)?,
+        player:     PlayerJSON,
       }
     )
   end
 
-  class ObstaclesJSON
+  class PlayerJSON
     JSON.mapping(
       {
-        x:      Int32,
-        y:      Int32,
-        size_x: Int32,
-        size_y: Int32,
-        name:   String?,
+        starting_position: StartingPositionJSON,
       }
     )
   end
 
-  class ItemsJSON
+  class StartingPositionJSON
     JSON.mapping(
       {
-        id:   Int64,
-        name: String?,
-        x:    Int32,
-        y:    Int32,
+        x: Int32,
+        y: Int32,
+      }
+    )
+  end
+
+  class ObstacleJSON
+    JSON.mapping(
+      {
+        points: Array(PointJSON),
+        name:   String,
+      }
+    )
+  end
+
+  class PointJSON
+    JSON.mapping(
+      {
+        x: Int32,
+        y: Int32,
+      }
+    )
+  end
+
+  class ItemJSON
+    JSON.mapping(
+      {
+        id:      Int64,
+        name:    String,
+        x:       Int32,
+        y:       Int32,
+        texture: String,
       }
     )
   end

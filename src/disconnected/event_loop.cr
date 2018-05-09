@@ -49,8 +49,11 @@ module Disconnected
       end
 
       return true unless @level.bg.sprite.global_bounds.contains? p_position
-      @level.obstacles.each do |obs|
-        return true if obs.global_bounds.contains? p_position
+      @level.obstacles.each do |obs| # obs is a ConvexShape
+        next unless obs.global_bounds.contains? p_position
+        line = SF::VertexArray.new(SF::Lines, 2)
+        line[0] = SF::Vertex.new(p_position)
+        line[1] = SF::Vertex.new(SF.vector2(@level.player.starting_position.x, @level.player.starting_position.y))
       end
       false
     end

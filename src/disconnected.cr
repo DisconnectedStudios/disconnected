@@ -8,9 +8,10 @@ module Disconnected
       mode = SF::VideoMode.new(resolution_x, resolution_y)
       @window = SF::RenderWindow.new(mode, "Disconnected", full_screen ? SF::Style::Fullscreen : SF::Style::Default)
       @window.vertical_sync_enabled = vsync
-      @player = Player.new(["resources/player/player.png"], 350, 300)
+
       @levels = Array(Level).new
       load_levels
+      @player = Player.new(["resources/player/player.png"], @levels.first.player.starting_position.x, @levels.first.player.starting_position.x)
       @event_loop = EventLoop.new(@window, @player, @levels.first)
       @chars = Array(BasicChar).new
       @renderer = Render.new(@window, @levels.first, @player, @chars)

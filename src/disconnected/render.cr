@@ -18,6 +18,8 @@ module Disconnected
         @window.view = @main_view
         @window.draw @level.bg.sprite
         @window.draw @player.sprite
+        @level.obstacles.each { |obs| @window.draw obs }
+        @level.items.each { |itm| @window.draw itm.sprite }
         @chars.each { |n| @window.draw n.sprite }
         @window.display
         Fiber.yield

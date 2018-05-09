@@ -1,98 +1,46 @@
 {
   "title": "Chapter 1",
   "background": "resources/backgrounds/chapter_01/forest_clearing.png",
+  "player": {
+    "starting_position": {
+      "x": 350,
+      "y": 350
+    }
+  },
   "obstacles": [
     {
-      "name": "trees left",
-      "x": 0,
-      "y": 0,
-      "size_x": 280,
-      "size_y": 1024
-    },
-    {
-      "name": "trees up",
-      "x": 0,
-      "y": 0,
-      "size_x": 1024,
-      "size_y": 150
-    },
-    {
-      "name": "twin trees top",
-      "x": 263,
-      "y": 60,
-      "size_x": 282,
-      "size_y": 130
-    },
-    {
-      "name": "single tree",
-      "x": 600,
-      "y": 168,
-      "size_x": 95,
-      "size_y": 95
-    },
-    {
-      "name": "trees right",
-      "x": 798,
-      "y": 0,
-      "size_x": 222,
-      "size_y": 1024
-    },
-    {
-      "name": "single tree right",
-      "x": 719,
-      "y": 264,
-      "size_x": 100,
-      "size_y": 105
-    },
-    {
-      "name": "single tree right 2",
-      "x": 761,
-      "y": 355,
-      "size_x": 78,
-      "size_y": 73
-    },
-    {
-      "name": "trees right lower corner",
-      "x": 693,
-      "y": 635,
-      "size_x": 168,
-      "size_y": 388
-    },
-    {
-      "name": "trees left lower corner",
-      "x": 165,
-      "y": 549,
-      "size_x": 428,
-      "size_y": 474
-    },
-    {
-      "name": "tree log1",
-      "x": 447,
-      "y": 389,
-      "size_x": 41,
-      "size_y": 16
-    },
-    {
-      "name": "tree log2",
-      "x": 425,
-      "y": 348,
-      "size_x": 40,
-      "size_y": 26
-    },
-    {
-      "name": "tree log3",
-      "x": 443,
-      "y": 364,
-      "size_x": 29,
-      "size_y": 36
+      "name": "trees",
+      "points": [
+        {
+          "x": 1,
+          "y": 1
+        },
+        {
+          "x": 1,
+          "y": 250
+        },
+        {
+          "x": 250,
+          "y": 250
+        },
+        {
+          "x": 620,
+          "y": 15
+        },
+        {
+          "x": 250,
+          "y": 1
+        }
+      ]
     }
   ],
   "items": [
     {
-      "x": 1,
-      "y": 1,
+      "x": 250,
+      "y": 300,
       "name": "stick",
-      "id": 1
+      "id": 1,
+      "texture": "resources/items/chapter_01/yellow_staff.png"
     }
   ]
 }
