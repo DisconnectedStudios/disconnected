@@ -55,16 +55,18 @@ module Disconnected
           break if point + 1 > obs.point_count
           p1 = obs.get_point(point)
           p2 = obs.get_point(point + 1)
-          return true if Intersection.lines(
-                           p_position.x.to_i,
-                           p_position.y.to_i,
-                           @level.player.starting_position.x.to_i,
-                           @level.player.starting_position.y.to_i,
-                           p1.x.to_i,
-                           p1.y.to_i,
-                           p2.x.to_i,
-                           p2.y.to_i
-                         )
+          if (Intersection.lines(
+               p_position.x.to_i,
+               p_position.y.to_i,
+               @level.player.starting_position.x.to_i,
+               @level.player.starting_position.y.to_i,
+               p1.x.to_i,
+               p1.y.to_i,
+               p2.x.to_i,
+               p2.y.to_i
+             ) == {0, 0})
+            return true
+          end
         end
       end
       false
