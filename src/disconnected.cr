@@ -12,9 +12,8 @@ module Disconnected
       @levels = Array(Level).new
       load_levels
       @player = Player.new(["resources/player/player.png"], @levels.first.player.starting_position.x, @levels.first.player.starting_position.x)
-      @event_loop = EventLoop.new(@window, @player, @levels.first)
       @chars = Array(BasicChar).new
-      @renderer = Render.new(@window, @levels.first, @player, @chars)
+      @event_loop = EventLoop.new(@window, @player, @levels.first, @chars)
     end
 
     def load_levels
@@ -27,9 +26,6 @@ module Disconnected
     end
 
     def run
-      spawn do
-        @renderer.run
-      end
       @event_loop.run
     end
   end

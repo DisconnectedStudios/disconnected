@@ -3,11 +3,55 @@ module Disconnected
     @window : SF::RenderWindow
     @player : Player
     @level : Level
+    @chars : Array(BasicChar)
 
-    def initialize(@window, @player, @level)
+    def initialize(@window, @player, @level, @chars)
+      @main_view = @window.default_view.as(SF::View)
+      @main_view.zoom(0.5)
+      @main_view.viewport = SF.float_rect(0, 0, 1, 1)
+      @main_view.center = @player.position
+      @block_render = false
+    end
+
+    def handle_interactions
+      case (interaction = @player.interactions.first)
+      when .is_a?(Item)
+        @player.inventory << interaction
+        @player.interactions.delete(interaction)
+        @level.items.delete(interaction)
+        txt = Text.get_text
+        txt.string = "Got Item: #{interaction}"
+        txt.position = @player.position
+        @window.draw(txt)
+        @block_render = true
+      when .is_a?(BasicChar)
+      end
+    end
+
+    def render
+      loop do
+        @window.clear SF::Color.new(0, 0, 0)
+        @main_view.center = @player.position
+        @window.view = @main_view
+        @window.draw @level.bg.sprite
+        @window.draw @player.sprite
+        unless @player.interactions.empty?
+          handle_interactions
+        end
+        # @level.obstacles.each { |obs| @window.draw obs }
+        @level.items.each { |itm| @window.draw itm.sprite }
+        @chars.each { |n| @window.draw n.sprite }
+        @window.display
+        Fiber.yield
+        while @block_render
+          Fiber.yield
+        end
+        break unless @window.open?
+      end
     end
 
     def run
+      spawn render
       while @window.open?
         while event = @window.poll_event
           case event
@@ -27,6 +71,8 @@ module Disconnected
               check_interactions
             when .escape?
               @window.close
+            when .enter?
+              @block_render = false
             end
           end
           Fiber.yield
@@ -36,6 +82,11 @@ module Disconnected
     end
 
     def check_interactions
+      @level.items.each do |itm|
+        if itm.sprite.global_bounds.contains? @player.position
+          @player.interactions << itm
+        end
+      end
     end
 
     def direction_makes_collision?(direction : Symbol)

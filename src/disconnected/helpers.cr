@@ -19,6 +19,21 @@ module Disconnected
     end
   end
 
+  module Text
+    extend self
+
+    def get_text : SF::Text
+      text = SF::Text.new
+      # select the font
+      text.font = SF::Font.from_file("resources/fonts/Ubuntu-MI.ttf")
+      # set the character size
+      text.character_size = 30 # in pixels, not points!
+      # set the color
+      text.color = SF::Color::White
+      text
+    end
+  end
+
   module Intersection
     extend self
 
