@@ -23,6 +23,8 @@ module Disconnected
               movment
             when .d?
               movment
+            when .space?
+              check_interactions
             when .escape?
               @window.close
             end
@@ -31,6 +33,9 @@ module Disconnected
         end
         Fiber.yield
       end
+    end
+
+    def check_interactions
     end
 
     def direction_makes_collision?(direction : Symbol)

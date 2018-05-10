@@ -1,7 +1,7 @@
 module Disconnected
   class BasicChar
     getter :name, :sprite
-    property :health, :speed
+    property :health, :speed, :interactions
 
     def initialize(texture_path : Array(String), starting_position_x : Int32, starting_position_y : Int32, @name : String = "", @health : Int32 = 10)
       @speed = 1
@@ -12,7 +12,7 @@ module Disconnected
       @texture = SF::Texture.from_file(texture_path.first)
       @sprite = SF::Sprite.new(@texture)
       @sprite.position = SF.vector2(starting_position_x, starting_position_y)
-
+      @interactions = Array(Item | BasicChar).new
       reset_sprite_position
       loop_texture
     end
