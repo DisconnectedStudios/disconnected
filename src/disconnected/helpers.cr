@@ -22,12 +22,12 @@ module Disconnected
   module Text
     extend self
 
-    def get_text : SF::Text
+    def get_text(size : Int32 = 30) : SF::Text
       text = SF::Text.new
       # select the font
       text.font = SF::Font.from_file("resources/fonts/Ubuntu-MI.ttf")
       # set the character size
-      text.character_size = 30 # in pixels, not points!
+      text.character_size = size # in pixels, not points!
       # set the color
       text.color = SF::Color::White
       text

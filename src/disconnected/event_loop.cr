@@ -20,8 +20,8 @@ module Disconnected
         @player.inventory << interaction
         @player.interactions.delete(interaction)
         @level.items.delete(interaction)
-        txt = Text.get_text
-        txt.string = "Got Item: #{interaction}"
+        txt = Text.get_text(10)
+        txt.string = "Got Item: #{interaction.inspect}"
         txt.position = @player.position
         @window.draw(txt)
         @window.display
@@ -35,9 +35,16 @@ module Disconnected
       @block_render = true
       @block_movment = true
       sleep 0.15
-      txt = Text.get_text
-      txt.string = "Inventory: #{@player.inventory}"
-      txt.position = @player.position
+      txt = Text.get_text(10)
+      inv = "~~Inventory~~\n\n"
+      @player.inventory.each do |i|
+        inv += "Name: " + i.name + "\n"
+        inv += "Id: " + i.id.to_s + "\n"
+        inv += "\n\n"
+      end
+      txt.string = inv
+      txt.position = @player.position.dup
+      txt.position.x = @player.position.x + 50.0_f32
       @window.draw(txt)
       @window.display
     end
