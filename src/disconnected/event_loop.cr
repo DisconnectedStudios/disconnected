@@ -23,13 +23,27 @@ module Disconnected
         txt.string = "Got Item: #{interaction}"
         txt.position = @player.position
         @window.draw(txt)
+        @window.display
         @block_render = true
       when .is_a?(BasicChar)
       end
     end
 
+    def show_inventory
+      @block_render = true
+      sleep 0.15
+      txt = Text.get_text
+      txt.string = "Inventory: #{@player.inventory}"
+      txt.position = @player.position
+      @window.draw(txt)
+      @window.display
+    end
+
     def render
       loop do
+        while @block_render
+          Fiber.yield
+        end
         @window.clear SF::Color.new(0, 0, 0)
         @main_view.center = @player.position
         @window.view = @main_view
@@ -67,6 +81,8 @@ module Disconnected
               movment
             when .d?
               movment
+            when .i?
+              show_inventory
             when .space?
               check_interactions
             when .escape?
