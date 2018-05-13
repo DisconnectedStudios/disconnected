@@ -11,6 +11,7 @@ module Disconnected
       @main_view.viewport = SF.float_rect(0, 0, 1, 1)
       @main_view.center = @player.position
       @block_render = false
+      @block_movment = false
     end
 
     def handle_interactions
@@ -25,12 +26,14 @@ module Disconnected
         @window.draw(txt)
         @window.display
         @block_render = true
+        @block_movment = true
       when .is_a?(BasicChar)
       end
     end
 
     def show_inventory
       @block_render = true
+      @block_movment = true
       sleep 0.15
       txt = Text.get_text
       txt.string = "Inventory: #{@player.inventory}"
@@ -89,6 +92,7 @@ module Disconnected
               @window.close
             when .enter?
               @block_render = false
+              @block_movment = false
             end
           end
           Fiber.yield
@@ -147,6 +151,7 @@ module Disconnected
     end
 
     def movment
+      return if @block_movment
       while SF::Keyboard.key_pressed?(SF::Keyboard::W)
         @player.move(:up) unless direction_makes_collision?(:up)
         if SF::Keyboard.key_pressed?(SF::Keyboard::A)
