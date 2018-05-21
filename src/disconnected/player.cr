@@ -3,9 +3,13 @@ require "./basic_char.cr"
 module Disconnected
   class Player < BasicChar
     property :interactions
-    getter :inventory
+    getter :inventory, :sprite
 
-    def initialize(texture_path : Array(String), starting_position_x : Int32, starting_position_y : Int32, @name : String = "", @health : Int32 = 10)
+    def initialize(texture_path : Array(String),
+                   starting_position_x : Int32,
+                   starting_position_y : Int32,
+                   @name : String = "",
+                   @health : Int32 = 10)
       @speed = 1
       @images = Array(SF::Image).new
       texture_path.each do |p|

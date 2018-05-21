@@ -35,18 +35,19 @@ module Disconnected
       @block_render = true
       @block_movment = true
       sleep 0.15
-      txt = Text.get_text(10)
-      inv = "~~Inventory~~\n\n"
-      @player.inventory.each do |i|
-        inv += "Name: " + i.name + "\n"
-        inv += "Id: " + i.id.to_s + "\n"
-        inv += "\n\n"
-      end
-      txt.string = inv
-      txt.position = @player.position.dup
-      txt.position.x = @player.position.x + 50.0_f32
-      @window.draw(txt)
-      @window.display
+
+      # Create a menu instance
+      inv_menu = InventoryMenu.new(
+        location: @player.sprite.position.dup,
+        data: @player.inventory,
+        name: "Inventory",
+        texture_path: "./resources/menus/old_paper_800x500.png",
+        size: {w: 500, h: 400})
+
+      # Draw menu
+      inv_menu.draw_menu(@window)
+
+      # @window.display
     end
 
     def render
